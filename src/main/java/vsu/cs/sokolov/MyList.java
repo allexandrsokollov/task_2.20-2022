@@ -36,20 +36,23 @@ public class MyList <T> {
         length = 0;
     }
 
+    public int getLength() {
+        return length;
+    }
+
     public void add(T value) {
         Node temp;
 
         if (head == null) {
            head = new Node(value);
-           length++;
         } else {
             temp = head;
             while (temp.nextElem != null) {
                 temp  = temp.getNextElem();
             }
             temp.setNextElem(new Node(value));
-            length++;
         }
+        length++;
     }
 
     public T getElem(int i) {
@@ -68,9 +71,26 @@ public class MyList <T> {
                 count++;
             }
         }
-        int counter = 0;
-
         return temp.getValue();
+    }
+
+    public void replace(int index) {
+        Node currentNode = head;
+
+        if (index == 0) {
+            head = head.nextElem;
+        } else {
+
+            for (int i = 0; currentNode != null; i++) {
+                if (i == index - 1) {
+                    currentNode.setNextElem(currentNode.getNextElem().getNextElem());
+                    break;
+                }
+                currentNode = currentNode.nextElem;
+            }
+
+        }
+        length--;
     }
 }
 
