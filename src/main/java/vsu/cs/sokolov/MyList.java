@@ -44,7 +44,7 @@ public class MyList <T> {
         Node temp;
 
         if (head == null) {
-           head = new Node(value);
+            head = new Node(value);
         } else {
             temp = head;
             while (temp.nextElem != null) {
@@ -88,9 +88,48 @@ public class MyList <T> {
                 }
                 currentNode = currentNode.nextElem;
             }
-
         }
         length--;
+    }
+
+    public void fixList() {
+        Node temp;
+
+        temp = head;
+        int count = 0;
+        while (count != length) {
+
+            if (count + 2 < length) {
+                if (!isElemSimpleNumber((Integer) temp.nextElem.value) &&
+                        isElemSimpleNumber((Integer) temp.nextElem.nextElem.value)) {
+                    temp.nextElem = temp.nextElem.nextElem;
+                    length--;
+                }
+            }
+
+            if (count + 1 < length) {
+                if (isElemSimpleNumber((Integer) temp.value) && !isElemSimpleNumber((Integer) temp.nextElem.value)) {
+                    if (count + 2 == length) {
+                        temp.nextElem = null;
+                    } else {
+                        temp.nextElem = temp.nextElem.nextElem;
+                    }
+                    length--;
+                }
+            }
+            temp = temp.getNextElem();
+            count++;
+        }
+
+    }
+
+    private boolean isElemSimpleNumber(int value) {
+        for (int i = 2; i <= Math.abs(value) / 2; i++) {
+            if (value % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
