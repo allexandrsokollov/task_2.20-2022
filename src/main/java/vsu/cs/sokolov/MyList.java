@@ -1,12 +1,12 @@
-package vsu.cs.sokolov;
+package cs.vsu.sokolov;
 
-public class MyList <T> {
+public class MyList  {
 
     private class Node {
-        private T value;
+        private Integer value;
         private Node nextElem;
 
-        Node(T value) {
+        Node(Integer value) {
             this.value = value;
             nextElem = null;
         }
@@ -15,16 +15,23 @@ public class MyList <T> {
             return nextElem;
         }
 
-        T getValue() {
+        Integer getValue() {
             return value;
         }
 
-        void setValue(T value) {
+        void setValue(Integer value) {
             this.value = value;
         }
 
         void setNextElem(Node nextElem) {
             this.nextElem = nextElem;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "value=" + value +
+                    '}';
         }
     }
 
@@ -40,7 +47,7 @@ public class MyList <T> {
         return length;
     }
 
-    public void add(T value) {
+    public void add(Integer value) {
         Node temp;
 
         if (head == null) {
@@ -55,7 +62,7 @@ public class MyList <T> {
         length++;
     }
 
-    public T getElem(int i) {
+    public Integer getElem(int i) {
         if (i >= length) {
             throw new IndexOutOfBoundsException();
         }
@@ -72,6 +79,17 @@ public class MyList <T> {
             }
         }
         return temp.getValue();
+    }
+
+    public void printList() {
+        Node current = head;
+        System.out.println();
+        while (current.nextElem != null) {
+            System.out.print(current.value + "  ");
+            current = current.nextElem;
+        }
+        System.out.print(current.value + "  ");
+
     }
 
     public void replace(int index) {
@@ -93,34 +111,24 @@ public class MyList <T> {
     }
 
     public void fixList() {
-        Node temp;
+        Node current;
 
-        temp = head;
-        int count = 0;
-        while (count != length) {
-
-            if (count + 2 < length) {
-                if (!isElemSimpleNumber((Integer) temp.nextElem.value) &&
-                        isElemSimpleNumber((Integer) temp.nextElem.nextElem.value)) {
-                    temp.nextElem = temp.nextElem.nextElem;
+        current = head;
+        while (current.nextElem != null) {
+            if (isElemSimpleNumber(current.value) && !isElemSimpleNumber(current.nextElem.value)) {
+                current.nextElem = current.nextElem.nextElem;
+                length--;
+            }
+            if (current.nextElem.nextElem != null) {
+                if (!isElemSimpleNumber(current.nextElem.value) &&
+                        isElemSimpleNumber(current.nextElem.nextElem.value)) {
+                    current.nextElem = current.nextElem.nextElem;
                     length--;
                 }
             }
 
-            if (count + 1 < length) {
-                if (isElemSimpleNumber((Integer) temp.value) && !isElemSimpleNumber((Integer) temp.nextElem.value)) {
-                    if (count + 2 == length) {
-                        temp.nextElem = null;
-                    } else {
-                        temp.nextElem = temp.nextElem.nextElem;
-                    }
-                    length--;
-                }
-            }
-            temp = temp.getNextElem();
-            count++;
+            current = current.nextElem;
         }
-
     }
 
     private boolean isElemSimpleNumber(int value) {
@@ -132,4 +140,3 @@ public class MyList <T> {
         return true;
     }
 }
-
