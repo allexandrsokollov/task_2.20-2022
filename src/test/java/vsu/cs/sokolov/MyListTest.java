@@ -8,7 +8,7 @@ public class MyListTest {
 
     @Test
     public void writeAndReadingTest() {
-        MyList<Integer> list = new MyList<>();
+        MyList list = new MyList();
         list.add(1);
         list.add(2);
         list.add(3);
@@ -29,7 +29,7 @@ public class MyListTest {
 
     @Test
     public void removeTest() {
-        MyList<Integer> list = new MyList<>();
+        MyList list = new MyList();
         list.add(1);
         list.add(2);
         list.add(3);
@@ -49,7 +49,7 @@ public class MyListTest {
 
         Assert.assertEquals(expected, testString.toString());
 
-        list = new MyList<>();
+        list = new MyList ();
         list.add(1);
         list.add(2);
         list.add(3);
@@ -69,7 +69,7 @@ public class MyListTest {
 
         Assert.assertEquals(expected, testString.toString());
 
-        list = new MyList<>();
+        list = new MyList();
         list.add(1);
         list.add(2);
         list.add(3);

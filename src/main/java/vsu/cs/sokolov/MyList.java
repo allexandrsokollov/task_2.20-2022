@@ -1,4 +1,4 @@
-package cs.vsu.sokolov;
+package vsu.cs.sokolov;
 
 public class MyList  {
 
