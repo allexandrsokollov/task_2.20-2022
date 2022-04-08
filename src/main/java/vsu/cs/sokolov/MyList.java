@@ -2,8 +2,8 @@ package vsu.cs.sokolov;
 
 public class MyList  {
 
-    private class Node {
-        private Integer value;
+    private static class Node {
+        private final Integer value;
         private Node nextElem;
 
         Node(Integer value) {
@@ -17,10 +17,6 @@ public class MyList  {
 
         Integer getValue() {
             return value;
-        }
-
-        void setValue(Integer value) {
-            this.value = value;
         }
 
         void setNextElem(Node nextElem) {
